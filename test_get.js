@@ -4,6 +4,7 @@ import fetch from "node-fetch"; // Node.js で fetch を使うために必要
 
 console.log("Supabase URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
 console.log("Supabase ANON KEY:", process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+console.log("カレントディレクトリ:", process.cwd());
 
 const fetchAllUsers = async () => {
   const url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/userTable`;
@@ -30,7 +31,7 @@ const fetchAllUsers = async () => {
   // **ここで関数を実行する！**
     fetchAllUsers();
 
-  const fetchSelectedColumns = async () => {
+  const fetchSelectedColumns = async (username) => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/userTable?select=id,username`, {
       method: "GET",
       headers: {
